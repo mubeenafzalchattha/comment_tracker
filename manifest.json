@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "Reply Counter",
+    "version": "1.0",
+    "description": "Count how many replies you post daily on X and LinkedIn.",
+    "permissions": ["storage", "tabs", "activeTab"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": [
+          "*://*.twitter.com/*",
+          "*://*.x.com/*",
+          "*://*.www.linkedin.com/*",
+          "*://*.linkedin.com/*"
+        ],
+        "js": ["content.js"]
+      }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "icon.png"
+    },
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    }
+  }
+  

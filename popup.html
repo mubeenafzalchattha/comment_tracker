@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Inter, sans-serif;
+      width: 250px;
+      padding: 16px;
+      background: #faf5ef;
+    }
+
+    .card {
+      padding: 16px;
+      background: #fff8f0;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(179, 138, 96, 0.25);
+      border: 1px solid #e6d5c3;
+      text-align: center;
+      margin-bottom: 12px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .hidden {
+      opacity: 0;
+      transform: scale(0.9);
+      height: 0;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    h2 {
+      color: #8b4513;
+      margin-bottom: 10px;
+    }
+
+    .count {
+      font-size: 22px;
+      color: #a0522d;
+      font-weight: bold;
+      margin: 4px 0;
+    }
+
+    .sub {
+      margin-top: 6px;
+      color: #6b4f3b;
+      font-size: 13px;
+    }
+
+    .reset-btn {
+      margin-top: 14px;
+      width: 100%;
+      padding: 8px;
+      border: none;
+      background: #d9a36e;
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .reset-btn:hover {
+      background: #c18755;
+    }
+
+    input.goal-input {
+      width: 100%;
+      margin-top: 10px;
+      padding: 6px;
+      border-radius: 8px;
+      border: 1px solid #e6d5c3;
+      text-align: center;
+    }
+    .card {
+      padding: 16px;
+      background: #fff8f0;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(179, 138, 96, 0.25);
+      border: 1px solid #e6d5c3;
+      text-align: center;
+      margin-bottom: 12px;
+      transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+      overflow: hidden;
+    }
+
+    .minimized {
+      max-height: 20px;
+      opacity: 0.7;
+      transform: scale(0.95);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- X Card -->
+  <div id="xCard" class="card">
+    <div class="cardContent">
+      <h2>X Replies</h2>
+      <p class="count">Replies: <span id="xCount">0</span></p>
+      <p class="sub">Goal: <span id="xGoal">50</span></p>
+      <input id="xGoalInput" class="goal-input" type="number" placeholder="Set X Goal">
+      <p class="sub">Remaining: <span id="xRemaining">0</span></p>
+      <p class="sub">Time: <span id="xTime">0m 0s</span></p>
+    </div>
+  </div>
+  
+  <!-- LinkedIn Card -->
+  <div id="liCard" class="card">
+    <div class="cardContent">
+      <h2>LinkedIn Replies</h2>
+      <p class="count">Replies: <span id="liCount">0</span></p>
+      <p class="sub">Goal: <span id="liGoal">50</span></p>
+      <input id="liGoalInput" class="goal-input" type="number" placeholder="Set LinkedIn Goal">
+      <p class="sub">Remaining: <span id="liRemaining">0</span></p>
+      <p class="sub">Time: <span id="linkedinTime">0m 0s</span></p>
+    </div>
+  </div>
+  <button id="saveGoals" class="reset-btn">Save Goals</button>
+  <button id="reset" class="reset-btn" style="background:#b5651d;">Reset Counters</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>
