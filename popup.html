@@ -5,8 +5,67 @@
     body {
       font-family: Inter, sans-serif;
       width: 250px;
-      padding: 16px;
+      padding: 0;
       background: #faf5ef;
+      margin: 0;
+    }
+
+    .navbar {
+      display: flex;
+      background: #fff8f0;
+      border-bottom: 2px solid #e6d5c3;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .nav-tab {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: #6b4f3b;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+    }
+
+    .nav-tab:hover {
+      background: #f5ede0;
+    }
+
+    .nav-tab.active {
+      color: #8b4513;
+      border-bottom-color: #d9a36e;
+      background: #fff8f0;
+    }
+
+    .nav-settings {
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-left: 1px solid #e6d5c3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-settings:hover {
+      background: #f5ede0;
+    }
+
+    .nav-settings img {
+      width: 18px;
+      height: 18px;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-settings:hover img {
+      opacity: 1;
+    }
+
+    .content {
+      padding: 0 16px 16px 16px;
     }
 
     .card {
@@ -20,13 +79,8 @@
       transition: transform 0.3s, opacity 0.3s;
     }
 
-    .hidden {
-      opacity: 0;
-      transform: scale(0.9);
-      height: 0;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
+    .card.hidden {
+      display: none;
     }
 
     h2 {
@@ -45,6 +99,35 @@
       margin-top: 6px;
       color: #6b4f3b;
       font-size: 13px;
+    }
+
+    .progress-container {
+      margin: 8px 0;
+      width: 100%;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #e6d5c3;
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #d9a36e 0%, #c18755 100%);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      margin-top: 4px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 500;
+      color: #6b4f3b;
     }
 
     .reset-btn {
@@ -71,52 +154,98 @@
       border: 1px solid #e6d5c3;
       text-align: center;
     }
-    .card {
+
+    .settings-panel {
+      display: none;
       padding: 16px;
       background: #fff8f0;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(179, 138, 96, 0.25);
-      border: 1px solid #e6d5c3;
-      text-align: center;
-      margin-bottom: 12px;
-      transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-      overflow: hidden;
+      border-top: 2px solid #e6d5c3;
     }
 
-    .minimized {
-      max-height: 20px;
-      opacity: 0.7;
-      transform: scale(0.95);
-      cursor: pointer;
+    .settings-panel.active {
+      display: block;
+    }
+
+    .settings-section {
+      margin-bottom: 16px;
+    }
+
+    .settings-section h3 {
+      color: #8b4513;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .settings-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .settings-buttons .reset-btn {
+      margin-top: 0;
+      flex: 1;
     }
   </style>
 </head>
 <body>
-  <!-- X Card -->
-  <div id="xCard" class="card">
-    <div class="cardContent">
-      <h2>X Replies</h2>
-      <p class="count">Replies: <span id="xCount">0</span></p>
-      <p class="sub">Goal: <span id="xGoal">50</span></p>
-      <input id="xGoalInput" class="goal-input" type="number" placeholder="Set X Goal">
-      <p class="sub">Remaining: <span id="xRemaining">0</span></p>
-      <p class="sub">Time: <span id="xTime">0m 0s</span></p>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div id="navX" class="nav-tab active">X</div>
+    <div id="navLinkedIn" class="nav-tab">LinkedIn</div>
+    <div id="navSettings" class="nav-settings" title="Settings">
+      <img src="icon.png" alt="Settings">
     </div>
   </div>
-  
-  <!-- LinkedIn Card -->
-  <div id="liCard" class="card">
-    <div class="cardContent">
-      <h2>LinkedIn Replies</h2>
-      <p class="count">Replies: <span id="liCount">0</span></p>
-      <p class="sub">Goal: <span id="liGoal">50</span></p>
-      <input id="liGoalInput" class="goal-input" type="number" placeholder="Set LinkedIn Goal">
-      <p class="sub">Remaining: <span id="liRemaining">0</span></p>
-      <p class="sub">Time: <span id="linkedinTime">0m 0s</span></p>
+
+  <div class="content">
+    <!-- X Card -->
+    <div id="xCard" class="card">
+      <div class="cardContent">
+        <h2>X</h2>
+        <p class="count">Replies: <span id="xCount">0</span></p>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="xProgressFill" style="width: 0%;"></div>
+          </div>
+          <div class="progress-text" id="xProgressText">0/50</div>
+        </div>
+        <p class="sub">Remaining: <span id="xRemaining">0</span></p>
+        <p class="sub">Time: <span id="xTime">0m 0s</span></p>
+      </div>
+    </div>
+    
+    <!-- LinkedIn Card -->
+    <div id="liCard" class="card hidden">
+      <div class="cardContent">
+        <h2>LinkedIn</h2>
+        <p class="count">Replies: <span id="liCount">0</span></p>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="liProgressFill" style="width: 0%;"></div>
+          </div>
+          <div class="progress-text" id="liProgressText">0/50</div>
+        </div>
+        <p class="sub">Remaining: <span id="liRemaining">0</span></p>
+        <p class="sub">Time: <span id="linkedinTime">0m 0s</span></p>
+      </div>
+    </div>
+
+    <!-- Settings Panel -->
+    <div id="settingsPanel" class="settings-panel">
+      <div class="settings-section">
+        <h3>X Settings</h3>
+        <input id="xGoalInput" class="goal-input" type="number" placeholder="Set X Goal">
+      </div>
+      <div class="settings-section">
+        <h3>LinkedIn Settings</h3>
+        <input id="liGoalInput" class="goal-input" type="number" placeholder="Set LinkedIn Goal">
+      </div>
+      <div class="settings-buttons">
+        <button id="saveGoals" class="reset-btn">Save Goals</button>
+        <button id="reset" class="reset-btn" style="background:#b5651d;">Reset</button>
+      </div>
     </div>
   </div>
-  <button id="saveGoals" class="reset-btn">Save Goals</button>
-  <button id="reset" class="reset-btn" style="background:#b5651d;">Reset Counters</button>
 
   <script src="popup.js"></script>
 </body>

@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Reply Counter",
+    "name": "Reply Guy",
     "version": "1.0",
     "description": "Count how many replies you post daily on X and LinkedIn.",
     "permissions": ["storage", "tabs", "activeTab"],
