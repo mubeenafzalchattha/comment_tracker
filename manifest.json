@@ -26,6 +26,17 @@
         "16": "icon.png",
         "48": "icon.png",
         "128": "icon.png"
-    }
+    },
+    "web_accessible_resources": [
+      {
+        "resources": ["icon.png"],
+        "matches": [
+          "*://*.twitter.com/*",
+          "*://*.x.com/*",
+          "*://*.www.linkedin.com/*",
+          "*://*.linkedin.com/*"
+        ]
+      }
+    ]
   }
   
